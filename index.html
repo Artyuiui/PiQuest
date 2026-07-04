@@ -40,6 +40,7 @@ header{
   display:block; font-family: 'IBM Plex Mono', monospace; font-weight: 400;
   font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
 }
+.hdr-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
 .ghost-btn{
   font-family:'IBM Plex Sans Thai', sans-serif; font-size: 13px; font-weight:600;
   background: transparent; color: var(--chalk-dim); border: 1px solid var(--line);
@@ -51,44 +52,47 @@ header{
 .screen.active{ display:block; }
 
 /* ---------- Setup screen ---------- */
-.setup-block{ margin-bottom: 28px; }
+.setup-block{ margin-bottom: 26px; }
 .setup-label{
   font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px;
   text-transform: uppercase; color: var(--chalk-dim); margin-bottom: 12px;
 }
 .card-row{ display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
 .card-row.two{ grid-template-columns: repeat(2,1fr); }
-@media (max-width:640px){ .card-row, .card-row.two{ grid-template-columns: 1fr; } }
+@media (max-width:680px){ .card-row, .card-row.two{ grid-template-columns: 1fr; } }
 .choice-card{
   background: var(--navy-panel); border: 1px solid var(--line); border-radius: 14px;
-  padding: 16px; cursor:pointer; transition: all .15s ease;
+  padding: 16px 18px; cursor:pointer; transition: all .15s ease;
 }
 .choice-card:hover{ border-color: var(--gold); }
 .choice-card.selected{ border-color: var(--gold); background: linear-gradient(160deg, rgba(217,172,79,0.14), var(--navy-panel-2)); }
 .choice-card h3{ margin: 0 0 6px; font-family:'Fraunces',serif; font-size: 18px; }
 .choice-card p{ margin:0; font-size: 12.5px; color: var(--chalk-dim); line-height:1.5; }
 
-.custom-panel{ background: var(--navy-panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-top: 14px; display:none; }
-.custom-panel.show{ display:block; }
-.custom-row{ margin-bottom: 18px; }
-.custom-row:last-child{ margin-bottom:0; }
-.custom-row-label{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color: var(--chalk-dim); margin-bottom: 8px; }
-.chip-row{ display:flex; flex-wrap:wrap; gap: 8px; align-items:center; }
+.custom-panel{
+  background: var(--navy-panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; margin-top: 6px;
+}
+.chip-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 6px; }
 .chip{
-  border:1px solid var(--line); border-radius: 20px; padding: 7px 15px;
-  font-family:'IBM Plex Mono', monospace; font-size: 13px; cursor:pointer;
-  color: var(--chalk-dim); background: rgba(255,255,255,0.02); transition: all .12s ease;
+  font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--chalk-dim);
+  border: 1px solid var(--line); border-radius: 20px; padding: 9px 15px; cursor:pointer;
+  background: transparent; transition: all .12s ease; min-height: 40px;
 }
 .chip:hover{ border-color: var(--gold); }
 .chip.selected{ border-color: var(--gold); color: var(--chalk); background: rgba(217,172,79,0.14); }
-.chip-num-input{
-  font-family:'IBM Plex Mono',monospace; font-size:13px; width: 90px; padding:7px 10px;
-  border-radius: 20px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); color: var(--chalk);
-  display:none;
+.custom-row{ margin-bottom: 18px; }
+.custom-row:last-child{ margin-bottom: 0; }
+.or-input{
+  margin-top: 8px; display:flex; align-items:center; gap: 8px;
+  font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--chalk-dim);
 }
-.chip-num-input.show{ display:inline-block; }
-.custom-warn{ font-family:'IBM Plex Mono',monospace; font-size:12px; color: var(--red); margin-top:8px; display:none; }
-.custom-warn.show{ display:block; }
+.num-input{
+  background: var(--navy-panel-2); border: 1px solid var(--line); border-radius: 8px;
+  padding: 7px 10px; color: var(--chalk); font-family:'IBM Plex Mono', monospace; width: 90px; font-size: 13px;
+}
+.num-input:focus{ outline:none; border-color: var(--gold); }
+.check-row{ display:flex; align-items:center; gap: 8px; font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--chalk-dim); }
 
 .start-btn{
   margin-top: 8px; font-family:'IBM Plex Sans Thai', sans-serif; font-weight:700; font-size: 16px;
@@ -99,7 +103,10 @@ header{
 
 /* ---------- Quiz screen ---------- */
 .quiz-topbar{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 16px; }
-.pill{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--chalk-dim); border: 1px solid var(--line); border-radius: 20px; padding: 5px 12px; }
+.pill{
+  font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--chalk-dim);
+  border: 1px solid var(--line); border-radius: 20px; padding: 5px 12px;
+}
 .pill b{ color: var(--gold); }
 
 .timer-wrap{ margin-bottom: 22px; }
@@ -110,6 +117,8 @@ header{
 
 .grid{ display:grid; grid-template-columns: 380px 1fr; gap: 26px; }
 @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
+.grid.no-circle{ grid-template-columns: 1fr; }
+.grid.no-circle .question-panel{ max-width: 640px; margin: 0 auto; width:100%; }
 .panel{ background: linear-gradient(160deg, var(--navy-panel), var(--navy-panel-2)); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
 .circle-panel{ display:flex; flex-direction:column; align-items:center; gap: 10px; }
 .circle-label{ font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--chalk-dim); letter-spacing: 2px; text-transform: uppercase; align-self:flex-start; }
@@ -125,7 +134,13 @@ header{
 .question .eq{ color: var(--chalk-dim); font-weight:400; }
 
 .options{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width:480px){ .options{ grid-template-columns: 1fr; } }
+@media (max-width:480px){
+  .options{ grid-template-columns: 1fr; }
+  .wrap{ padding: 18px 14px 40px; }
+  .panel{ padding: 16px; }
+  .opt{ padding: 14px; font-size: 18px; }
+  .question{ font-size: clamp(26px, 8vw, 40px); }
+}
 .opt{
   background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 12px;
   padding: 16px; display:flex; align-items:center; gap: 14px; cursor:pointer;
@@ -150,7 +165,7 @@ header{
 .hint kbd{ background: rgba(255,255,255,0.06); border:1px solid var(--line); border-radius: 4px; padding: 1px 6px; font-family: inherit; margin: 0 2px; }
 .next-btn{
   font-family:'IBM Plex Sans Thai', sans-serif; font-weight:600; font-size: 14px;
-  background: transparent; color: var(--chalk-dim); border:1px solid var(--line); border-radius: 10px; padding: 9px 18px;
+  background: transparent; color: var(--chalk-dim); border:1px solid var(--line); border-radius: 10px; padding: 9px 16px;
   cursor:pointer; opacity:0; pointer-events:none; transition: opacity .2s ease, transform .1s ease;
 }
 .next-btn.show{ opacity:1; pointer-events:auto; }
@@ -165,7 +180,7 @@ header{
 /* ---------- Results / dashboard ---------- */
 .results-hero{ text-align:center; padding: 20px 20px 8px; }
 .results-hero .qtag{ margin-bottom: 6px; }
-.score-big{ font-family:'Fraunces', serif; font-weight:700; font-size: 56px; color: var(--gold); }
+.score-big{ font-family:'Fraunces', serif; font-weight:700; font-size: 54px; color: var(--gold); }
 .results-hero p{ color: var(--chalk-dim); font-family:'IBM Plex Mono', monospace; font-size: 14px; }
 .summary-strip{ display:flex; justify-content:center; gap: 30px; flex-wrap:wrap; margin: 18px 0 6px; }
 .summary-strip .item{ text-align:center; }
@@ -181,10 +196,11 @@ header{
 .callout .fn-name{ font-family:'Fraunces',serif; font-size:22px; }
 .callout .detail{ font-size: 13px; color: var(--chalk-dim); margin-top:4px; }
 
-table.stat-table{ width:100%; border-collapse: collapse; font-family:'IBM Plex Mono',monospace; font-size: 13px; }
-table.stat-table th{ text-align:left; color: var(--chalk-dim); font-weight:500; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 11px; text-transform:uppercase; letter-spacing:1px; }
-table.stat-table td{ padding: 10px 10px; border-bottom: 1px solid rgba(56,65,107,0.5); }
-table.stat-table tr:last-child td{ border-bottom:none; }
+.chart-row{ display:flex; gap: 24px; align-items:center; flex-wrap:wrap; }
+.chart-row .donut-wrap{ flex-shrink:0; text-align:center; }
+.chart-row .donut-wrap .lab{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--chalk-dim); margin-top:6px; }
+.chart-row .bars-wrap{ flex:1; min-width: 240px; }
+
 .row-actions{ display:flex; gap: 12px; justify-content:center; margin-top: 24px; flex-wrap:wrap; }
 .primary-btn{
   font-family:'IBM Plex Sans Thai', sans-serif; font-weight:700; font-size: 15px;
@@ -201,9 +217,8 @@ table.stat-table tr:last-child td{ border-bottom:none; }
 .history-list .hrow:last-child{ border-bottom:none; }
 
 .section-title{ font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--chalk-dim); margin: 26px 0 12px; }
-.section-title.first{ margin-top:0; }
+.section-title.first{ margin-top: 0; }
 svg text{ font-family:'IBM Plex Mono', monospace; }
-.chart-svg{ width:100%; height:auto; display:block; }
 </style>
 </head>
 <body>
@@ -213,7 +228,9 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
       <small>Unit Circle Drill</small>
       แบบทดสอบ sin · cos · tan · cosec · sec · cot
     </div>
-    <button class="ghost-btn" id="dashBtnHeader">สถิติของฉัน</button>
+    <div class="hdr-actions">
+      <button class="ghost-btn" id="dashBtnHeader">สถิติของฉัน</button>
+    </div>
   </header>
 
   <!-- ============ SETUP SCREEN ============ -->
@@ -222,16 +239,16 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
       <div class="setup-label">เลือกโหมด</div>
       <div class="card-row" id="modeCards">
         <div class="choice-card" data-mode="practice">
-          <h3>โหมดฝึกฝน</h3>
-          <p>ไม่จำกัดเวลา/จำนวนข้อ ระบบย้ำโจทย์ที่ยังทำไม่ดีให้บ่อยขึ้น</p>
+          <h3>ฝึกฝน</h3>
+          <p>นับถอยหลังตามระดับความยาก จบอัตโนมัติเมื่อครบจำนวนข้อ ระบบย้ำโจทย์ประเภทที่ยังทำได้ไม่ดีให้บ่อยขึ้นเอง</p>
         </div>
         <div class="choice-card" data-mode="exam">
-          <h3>โหมดสอบ</h3>
-          <p>จับเวลาต่อข้อ จำนวนข้อคงที่ สรุปผลเมื่อจบ</p>
+          <h3>สอบ</h3>
+          <p>จับเวลาถอยหลังแต่ละข้อ จำนวนข้อคงที่ สุ่มโจทย์ล้วน จบอัตโนมัติเมื่อครบ สรุปคะแนนเป็นกราฟ</p>
         </div>
         <div class="choice-card" data-mode="custom">
           <h3>กำหนดเอง</h3>
-          <p>เลือกฟังก์ชัน เวลา และจำนวนข้อเอง เช่น เฉพาะ sin จับเวลา 10 วิ</p>
+          <p>เลือกฟังก์ชันที่จะฝึก ตั้งเวลาต่อข้อ และจำนวนข้อได้เอง เช่น เฉพาะ sin จับเวลา 10 วิ</p>
         </div>
       </div>
     </div>
@@ -241,61 +258,52 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
       <div class="card-row" id="diffCards">
         <div class="choice-card" data-diff="easy">
           <h3>ง่าย</h3>
-          <p>เฉพาะ sin, cos, tan · 15 ข้อ · 30 วิ/ข้อ (โหมดสอบ)</p>
+          <p>เฉพาะ sin, cos, tan · 15 ข้อ · นับถอยหลัง 30 วิ/ข้อ</p>
         </div>
         <div class="choice-card" data-diff="normal">
           <h3>ปกติ</h3>
-          <p>ครบทั้ง 6 ฟังก์ชัน · 20 ข้อ · 20 วิ/ข้อ (โหมดสอบ)</p>
+          <p>ครบทั้ง 6 ฟังก์ชัน · 20 ข้อ · นับถอยหลัง 20 วิ/ข้อ</p>
         </div>
         <div class="choice-card" data-diff="hard">
           <h3>ยาก</h3>
-          <p>ครบทั้ง 6 ฟังก์ชัน · ตัวลวงใกล้เคียง · 25 ข้อ · 12 วิ/ข้อ</p>
+          <p>ครบทั้ง 6 ฟังก์ชัน · ตัวลวงใกล้เคียง · 25 ข้อ · นับถอยหลัง 12 วิ/ข้อ</p>
         </div>
       </div>
     </div>
 
-    <div class="setup-block" id="customBlock">
+    <div class="setup-block" id="customBlock" style="display:none;">
       <div class="setup-label">ตั้งค่าเอง</div>
-      <div class="custom-panel" id="customPanel">
+      <div class="custom-panel">
         <div class="custom-row">
-          <div class="custom-row-label">ฟังก์ชันที่ต้องการฝึก (เลือกได้หลายอัน)</div>
-          <div class="chip-row" id="funcChips">
-            <span class="chip selected" data-fn="sin">sin</span>
-            <span class="chip selected" data-fn="cos">cos</span>
-            <span class="chip selected" data-fn="tan">tan</span>
-            <span class="chip selected" data-fn="csc">cosec</span>
-            <span class="chip selected" data-fn="sec">sec</span>
-            <span class="chip selected" data-fn="cot">cot</span>
-          </div>
-          <div class="custom-warn" id="funcWarn">เลือกอย่างน้อย 1 ฟังก์ชัน</div>
+          <div class="setup-label" style="margin-bottom:8px;">ฟังก์ชันที่จะฝึก (เลือกได้หลายอัน)</div>
+          <div class="chip-row" id="funcChips"></div>
         </div>
         <div class="custom-row">
-          <div class="custom-row-label">เวลาต่อข้อ</div>
-          <div class="chip-row" id="timeChips">
-            <span class="chip" data-sec="none">ไม่จำกัด</span>
-            <span class="chip" data-sec="10">10 วิ</span>
-            <span class="chip" data-sec="15">15 วิ</span>
-            <span class="chip selected" data-sec="20">20 วิ</span>
-            <span class="chip" data-sec="30">30 วิ</span>
-            <span class="chip" data-sec="custom">กำหนดเอง</span>
-            <input type="number" min="3" max="120" class="chip-num-input" id="customTimeInput" placeholder="วินาที">
-          </div>
+          <div class="setup-label" style="margin-bottom:8px;">เวลาต่อข้อ</div>
+          <div class="chip-row" id="timeChips"></div>
+          <div class="or-input">หรือกำหนดเอง: <input type="number" min="1" class="num-input" id="customTimeInput" placeholder="วินาที"></div>
         </div>
         <div class="custom-row">
-          <div class="custom-row-label">จำนวนข้อ</div>
-          <div class="chip-row" id="countChips">
-            <span class="chip" data-count="10">10 ข้อ</span>
-            <span class="chip selected" data-count="20">20 ข้อ</span>
-            <span class="chip" data-count="30">30 ข้อ</span>
-            <span class="chip" data-count="none">ไม่จำกัด</span>
-            <span class="chip" data-count="custom">กำหนดเอง</span>
-            <input type="number" min="1" max="200" class="chip-num-input" id="customCountInput" placeholder="จำนวนข้อ">
-          </div>
+          <div class="setup-label" style="margin-bottom:8px;">จำนวนข้อ</div>
+          <div class="chip-row" id="countChips"></div>
+          <div class="or-input">หรือกำหนดเอง: <input type="number" min="1" class="num-input" id="customCountInput" placeholder="จำนวนข้อ"></div>
         </div>
-        <div class="custom-row" style="margin-bottom:0;">
-          <div class="chip-row">
-            <span class="chip" id="hardDistractorChip">ตัวเลือกหลอกขั้นสูง (สลับคู่ฟังก์ชัน)</span>
-          </div>
+        <div class="custom-row">
+          <label class="check-row"><input type="checkbox" id="customHardToggle"> ใช้ตัวเลือกหลอกใกล้เคียง (ยากขึ้น)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-label">การแสดงผล</div>
+      <div class="card-row two">
+        <div class="display-opt">
+          <div class="setup-label" style="margin-bottom:8px;">หน่วยมุม</div>
+          <div class="chip-row" id="angleUnitChips"></div>
+        </div>
+        <div class="display-opt">
+          <div class="setup-label" style="margin-bottom:8px;">รูปวงกลมหนึ่งหน่วย</div>
+          <div class="chip-row" id="showCircleChips"></div>
         </div>
       </div>
     </div>
@@ -344,11 +352,12 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
         <div>
           <div class="qtag" id="qDiffTag">ปกติ</div>
           <div class="question"><span class="fn" id="qFn">sin</span><span class="eq">(</span><span id="qAngle">210°</span><span class="eq">) = ?</span></div>
+          <div class="qtag" id="qAngleAlt" style="margin-top:6px;"></div>
         </div>
         <div class="options" id="optionsGrid"></div>
         <div class="footer-row">
-          <div class="hint">กด <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> เพื่อเลือกคำตอบ — เลือกแล้วไปข้อถัดไปให้อัตโนมัติ</div>
-          <button class="next-btn" id="nextBtn">ข้ามไปข้อถัดไป →</button>
+          <div class="hint">กด <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> เพื่อเลือกคำตอบ — เลือกแล้วไปข้อถัดไปทันที</div>
+          <button class="next-btn" id="nextBtn">ข้ามการรอ →</button>
         </div>
       </div>
     </div>
@@ -370,20 +379,16 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
     <div class="callout-row" id="calloutRow"></div>
 
     <div class="panel">
-      <div class="section-title first">กราฟความแม่นยำแยกตามฟังก์ชัน</div>
-      <div id="accChartWrap"></div>
+      <div class="section-title first">ผลแยกตามฟังก์ชัน (เซสชันนี้)</div>
+      <div class="chart-row">
+        <div class="donut-wrap"><div id="resultsDonut"></div><div class="lab">ความแม่นยำรวม</div></div>
+        <div class="bars-wrap" id="resultsBars"></div>
+      </div>
     </div>
 
     <div class="panel" style="margin-top:18px;">
-      <div class="section-title first">กราฟเวลาในการตอบแต่ละข้อ</div>
-      <div id="timeChartWrap"></div>
-    </div>
-
-    <div class="panel" style="margin-top:18px;">
-      <div class="section-title first">ตารางสรุป (เซสชันนี้)</div>
-      <table class="stat-table" id="resultsTable"><thead>
-        <tr><th>ฟังก์ชัน</th><th>ทำ/ถูก</th><th>ความแม่นยำ</th><th>เวลาเฉลี่ย</th></tr>
-      </thead><tbody></tbody></table>
+      <div class="section-title first">ความเร็วในการตอบแต่ละข้อ</div>
+      <div id="resultsTimeline"></div>
     </div>
 
     <div class="row-actions">
@@ -395,17 +400,14 @@ svg text{ font-family:'IBM Plex Mono', monospace; }
   <!-- ============ DASHBOARD SCREEN ============ -->
   <div class="screen" id="dashboardScreen">
     <div class="panel">
-      <div class="section-title first">กราฟสถิติสะสม (ทุกเซสชัน)</div>
-      <div id="dashChartWrap"></div>
+      <div class="section-title first">สถิติสะสมทั้งหมด (ทุกเซสชัน)</div>
+      <div class="chart-row">
+        <div class="donut-wrap"><div id="dashDonut"></div><div class="lab">ความแม่นยำรวม</div></div>
+        <div class="bars-wrap" id="dashBars"></div>
+      </div>
     </div>
     <div class="panel" style="margin-top:18px;">
-      <div class="section-title first">ตารางสถิติสะสม</div>
-      <table class="stat-table" id="dashTable"><thead>
-        <tr><th>ฟังก์ชัน</th><th>ทำ/ถูก</th><th>ความแม่นยำ</th><th>เวลาเฉลี่ย</th></tr>
-      </thead><tbody></tbody></table>
-    </div>
-    <div class="panel" style="margin-top:18px;">
-      <div class="section-title first">ประวัติเซสชันล่าสุด</div>
+      <div class="section-title first">ประวัติการสอบล่าสุด</div>
       <div class="history-list" id="historyList"><div class="hrow"><span>ยังไม่มีข้อมูล</span></div></div>
     </div>
     <div class="row-actions">
@@ -441,12 +443,24 @@ const ANGLES = Object.keys(TABLE).map(Number);
 const ALL_FUNCS = ['sin','cos','tan','csc','sec','cot'];
 const FUNC_LABEL = { sin:'sin', cos:'cos', tan:'tan', csc:'cosec', sec:'sec', cot:'cot' };
 const CROSS = { sin:'cos', cos:'sin', tan:'cot', cot:'tan', sec:'csc', csc:'sec' };
+const RADIAN_LABEL = {
+  0:'0', 30:'π/6', 45:'π/4', 60:'π/3', 90:'π/2', 120:'2π/3', 135:'3π/4', 150:'5π/6',
+  180:'π', 210:'7π/6', 225:'5π/4', 240:'4π/3', 270:'3π/2', 300:'5π/3', 315:'7π/4', 330:'11π/6', 360:'2π',
+};
+function formatAngle(deg){
+  return displaySettings.angleUnit === 'rad' ? RADIAN_LABEL[deg] : (deg + '°');
+}
+function altAngleLabel(deg){
+  return displaySettings.angleUnit === 'rad' ? (deg + '°') : RADIAN_LABEL[deg];
+}
 
 const DIFF_CONFIG = {
   easy:   { funcs: ['sin','cos','tan'], examQuestions: 15, examTime: 30000, label: 'ง่าย', hardDistractors:false },
   normal: { funcs: ALL_FUNCS,           examQuestions: 20, examTime: 20000, label: 'ปกติ', hardDistractors:false },
   hard:   { funcs: ALL_FUNCS,           examQuestions: 25, examTime: 12000, label: 'ยาก', hardDistractors:true },
 };
+const TIME_CHIP_OPTS = [ {label:'5 วิ', ms:5000}, {label:'10 วิ', ms:10000}, {label:'15 วิ', ms:15000}, {label:'20 วิ', ms:20000}, {label:'30 วิ', ms:30000}, {label:'ไม่จำกัด', ms:null} ];
+const COUNT_CHIP_OPTS = [ {label:'10 ข้อ', n:10}, {label:'15 ข้อ', n:15}, {label:'20 ข้อ', n:20}, {label:'30 ข้อ', n:30}, {label:'ไม่จำกัด', n:null} ];
 
 // ================= Persistent stats (window.storage) =================
 const STATS_KEY = 'trig_stats_v1';
@@ -455,19 +469,23 @@ let statsCache = null;
 function emptyStats(){
   const perFn = {};
   ALL_FUNCS.forEach(f => perFn[f] = { attempts:0, correct:0, timeSum:0 });
-  return { perFn, sessionHistory: [] };
+  return { perFn, examHistory: [] };
 }
 async function loadStats(){
   if(statsCache) return statsCache;
   try{
     const res = await window.storage.get(STATS_KEY, false);
     statsCache = res && res.value ? JSON.parse(res.value) : emptyStats();
-  }catch(e){ statsCache = emptyStats(); }
+  }catch(e){
+    statsCache = emptyStats();
+  }
   ALL_FUNCS.forEach(f => { if(!statsCache.perFn[f]) statsCache.perFn[f] = { attempts:0, correct:0, timeSum:0 }; });
-  if(!statsCache.sessionHistory) statsCache.sessionHistory = [];
+  if(!statsCache.examHistory) statsCache.examHistory = [];
   return statsCache;
 }
-async function saveStats(){ try{ await window.storage.set(STATS_KEY, JSON.stringify(statsCache), false); }catch(e){} }
+async function saveStats(){
+  try{ await window.storage.set(STATS_KEY, JSON.stringify(statsCache), false); }catch(e){}
+}
 async function resetStats(){
   statsCache = emptyStats();
   try{ await window.storage.delete(STATS_KEY, false); }catch(e){}
@@ -476,102 +494,20 @@ async function resetStats(){
 
 // ================= Setup state =================
 let settings = { mode: 'practice', difficulty: 'normal' };
-let customConfig = { funcs: new Set(ALL_FUNCS), timeLimit: null, questionCount: 20, hardDistractors: false };
+let displaySettings = { angleUnit: 'deg', showCircle: true };
+let customState = {
+  funcs: new Set(ALL_FUNCS),
+  timeMs: 15000,
+  count: 20,
+};
 
-function updateSetupVisibility(){
-  document.getElementById('difficultyBlock').style.display = settings.mode === 'custom' ? 'none' : 'block';
-  document.getElementById('customPanel').classList.toggle('show', settings.mode === 'custom');
-}
+// ================= Session state =================
+let session = null;
 
-document.querySelectorAll('#modeCards .choice-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('#modeCards .choice-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    settings.mode = card.dataset.mode;
-    updateSetupVisibility();
-  });
-});
-document.querySelectorAll('#diffCards .choice-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('#diffCards .choice-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    settings.difficulty = card.dataset.diff;
-  });
-});
-document.querySelector('#modeCards .choice-card[data-mode="practice"]').classList.add('selected');
-document.querySelector('#diffCards .choice-card[data-diff="normal"]').classList.add('selected');
-updateSetupVisibility();
-
-// function chips (multi-select)
-document.querySelectorAll('#funcChips .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    chip.classList.toggle('selected');
-    const f = chip.dataset.fn;
-    if(customConfig.funcs.has(f)) customConfig.funcs.delete(f); else customConfig.funcs.add(f);
-    document.getElementById('funcWarn').classList.toggle('show', customConfig.funcs.size === 0);
-  });
-});
-// timer chips (single select)
-document.querySelectorAll('#timeChips .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#timeChips .chip').forEach(c => c.classList.remove('selected'));
-    chip.classList.add('selected');
-    const sec = chip.dataset.sec;
-    const customInput = document.getElementById('customTimeInput');
-    if(sec === 'none'){ customConfig.timeLimit = null; customInput.classList.remove('show'); }
-    else if(sec === 'custom'){ customInput.classList.add('show'); customInput.focus();
-      customConfig.timeLimit = customInput.value ? parseFloat(customInput.value)*1000 : 10000; }
-    else { customInput.classList.remove('show'); customConfig.timeLimit = parseFloat(sec)*1000; }
-  });
-});
-document.getElementById('customTimeInput').addEventListener('input', (e) => {
-  const v = parseFloat(e.target.value);
-  if(v > 0) customConfig.timeLimit = v*1000;
-});
-document.querySelector('#timeChips .chip[data-sec="20"]').classList.add('selected');
-customConfig.timeLimit = 20000;
-
-// count chips (single select)
-document.querySelectorAll('#countChips .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#countChips .chip').forEach(c => c.classList.remove('selected'));
-    chip.classList.add('selected');
-    const count = chip.dataset.count;
-    const customInput = document.getElementById('customCountInput');
-    if(count === 'none'){ customConfig.questionCount = null; customInput.classList.remove('show'); }
-    else if(count === 'custom'){ customInput.classList.add('show'); customInput.focus();
-      customConfig.questionCount = customInput.value ? parseInt(customInput.value,10) : 20; }
-    else { customInput.classList.remove('show'); customConfig.questionCount = parseInt(count,10); }
-  });
-});
-document.getElementById('customCountInput').addEventListener('input', (e) => {
-  const v = parseInt(e.target.value,10);
-  if(v > 0) customConfig.questionCount = v;
-});
-
-document.getElementById('hardDistractorChip').addEventListener('click', (e) => {
-  e.target.classList.toggle('selected');
-  customConfig.hardDistractors = e.target.classList.contains('selected');
-});
-
-document.getElementById('startBtn').addEventListener('click', () => {
-  if(settings.mode === 'custom' && customConfig.funcs.size === 0){
-    document.getElementById('funcWarn').classList.add('show');
-    return;
-  }
-  startSession();
-});
-document.getElementById('dashBtnHeader').addEventListener('click', openDashboard);
-document.getElementById('dashBackBtn').addEventListener('click', () => showScreen('setupScreen'));
-document.getElementById('backHomeBtn').addEventListener('click', () => showScreen('setupScreen'));
-document.getElementById('retryBtn').addEventListener('click', startSession);
-document.getElementById('endSessionBtn').addEventListener('click', () => finishSession(true));
-document.getElementById('resetStatsBtn').addEventListener('click', async () => { await resetStats(); renderDashboard(); });
-
-// ================= Screen management =================
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function newSessionLog(){
+  const log = {};
+  ALL_FUNCS.forEach(f => log[f] = { attempts:0, correct:0, timeSum:0 });
+  return log;
 }
 
 // ================= Helpers =================
@@ -586,8 +522,15 @@ function valueHTML(str){
   } else { html = str; }
   return (neg ? '−' : '') + html;
 }
-function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
-function fmtTime(ms){ const totalSec = Math.round(ms/1000); const m = Math.floor(totalSec/60), s = totalSec%60; return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0'); }
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+  return arr;
+}
+function fmtTime(ms){
+  const totalSec = Math.round(ms/1000);
+  const m = Math.floor(totalSec/60), s = totalSec%60;
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
 function fmtSec(ms){ return (ms/1000).toFixed(1) + 's'; }
 
 function buildDistractors(fn, angle, correct, hard){
@@ -603,6 +546,7 @@ function buildDistractors(fn, angle, correct, hard){
   }
   return arr.slice(0,3);
 }
+
 function weightedPickFunc(allowedFuncs, perFnStats){
   const weights = allowedFuncs.map(f => {
     const s = perFnStats[f];
@@ -615,86 +559,236 @@ function weightedPickFunc(allowedFuncs, perFnStats){
   return weights[weights.length-1].f;
 }
 
-// ================= Run config (unifies practice/exam/custom) =================
-function getRunConfig(){
+// ================= Screen management =================
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ================= Setup screen wiring =================
+document.querySelectorAll('#modeCards .choice-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('#modeCards .choice-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    settings.mode = card.dataset.mode;
+    document.getElementById('difficultyBlock').style.display = settings.mode === 'custom' ? 'none' : 'block';
+    document.getElementById('customBlock').style.display = settings.mode === 'custom' ? 'block' : 'none';
+  });
+});
+document.querySelectorAll('#diffCards .choice-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('#diffCards .choice-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    settings.difficulty = card.dataset.diff;
+  });
+});
+document.querySelector('#modeCards .choice-card[data-mode="practice"]').classList.add('selected');
+document.querySelector('#diffCards .choice-card[data-diff="normal"]').classList.add('selected');
+
+// build function chips
+const funcChipsEl = document.getElementById('funcChips');
+ALL_FUNCS.forEach(f => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip selected';
+  chip.textContent = FUNC_LABEL[f];
+  chip.addEventListener('click', () => {
+    if(customState.funcs.has(f)){
+      if(customState.funcs.size === 1) return; // keep at least one
+      customState.funcs.delete(f);
+      chip.classList.remove('selected');
+    } else {
+      customState.funcs.add(f);
+      chip.classList.add('selected');
+    }
+  });
+  funcChipsEl.appendChild(chip);
+});
+
+// build time chips
+const timeChipsEl = document.getElementById('timeChips');
+const timeChipEls = TIME_CHIP_OPTS.map(opt => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip' + (opt.ms === 15000 ? ' selected' : '');
+  chip.textContent = opt.label;
+  chip.addEventListener('click', () => {
+    timeChipEls.forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    customState.timeMs = opt.ms;
+    document.getElementById('customTimeInput').value = '';
+  });
+  timeChipsEl.appendChild(chip);
+  return chip;
+});
+document.getElementById('customTimeInput').addEventListener('input', (e) => {
+  const v = parseFloat(e.target.value);
+  if(v > 0){
+    customState.timeMs = v * 1000;
+    timeChipEls.forEach(c => c.classList.remove('selected'));
+  }
+});
+
+// build count chips
+const countChipsEl = document.getElementById('countChips');
+const countChipEls = COUNT_CHIP_OPTS.map(opt => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip' + (opt.n === 20 ? ' selected' : '');
+  chip.textContent = opt.label;
+  chip.addEventListener('click', () => {
+    countChipEls.forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    customState.count = opt.n;
+    document.getElementById('customCountInput').value = '';
+  });
+  countChipsEl.appendChild(chip);
+  return chip;
+});
+document.getElementById('customCountInput').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value, 10);
+  if(v > 0){
+    customState.count = v;
+    countChipEls.forEach(c => c.classList.remove('selected'));
+  }
+});
+
+// display settings chips
+const angleUnitChipsEl = document.getElementById('angleUnitChips');
+const ANGLE_UNIT_OPTS = [ {label:'องศา (°)', val:'deg'}, {label:'เรเดียน (π)', val:'rad'} ];
+const angleUnitChipEls = ANGLE_UNIT_OPTS.map(opt => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip' + (opt.val === 'deg' ? ' selected' : '');
+  chip.textContent = opt.label;
+  chip.addEventListener('click', () => {
+    angleUnitChipEls.forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    displaySettings.angleUnit = opt.val;
+  });
+  angleUnitChipsEl.appendChild(chip);
+  return chip;
+});
+
+const showCircleChipsEl = document.getElementById('showCircleChips');
+const SHOW_CIRCLE_OPTS = [ {label:'แสดงรูป', val:true}, {label:'ไม่แสดงรูป', val:false} ];
+const showCircleChipEls = SHOW_CIRCLE_OPTS.map(opt => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip' + (opt.val === true ? ' selected' : '');
+  chip.textContent = opt.label;
+  chip.addEventListener('click', () => {
+    showCircleChipEls.forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    displaySettings.showCircle = opt.val;
+  });
+  showCircleChipsEl.appendChild(chip);
+  return chip;
+});
+
+document.getElementById('startBtn').addEventListener('click', startSession);
+document.getElementById('dashBtnHeader').addEventListener('click', openDashboard);
+document.getElementById('dashBackBtn').addEventListener('click', () => showScreen('setupScreen'));
+document.getElementById('backHomeBtn').addEventListener('click', () => showScreen('setupScreen'));
+document.getElementById('retryBtn').addEventListener('click', startSession);
+document.getElementById('endSessionBtn').addEventListener('click', () => finishSession(true));
+document.getElementById('resetStatsBtn').addEventListener('click', async () => {
+  await resetStats();
+  renderDashboard();
+});
+
+// ================= Config resolution =================
+function resolveConfig(){
   if(settings.mode === 'custom'){
     return {
-      funcs: Array.from(customConfig.funcs),
-      timeLimit: customConfig.timeLimit,
-      totalQuestions: customConfig.questionCount,
+      funcs: Array.from(customState.funcs),
+      timeLimit: customState.timeMs,
+      questionCount: customState.count,
+      hardDistractors: document.getElementById('customHardToggle').checked,
       label: 'กำหนดเอง',
-      hardDistractors: customConfig.hardDistractors,
-      adaptive: true,
-      modeLabel: 'กำหนดเอง',
     };
+  } else {
+    const d = DIFF_CONFIG[settings.difficulty];
+    return { funcs: d.funcs, timeLimit: d.examTime, questionCount: d.examQuestions, hardDistractors: d.hardDistractors, label: d.label };
   }
-  const cfg = DIFF_CONFIG[settings.difficulty];
-  if(settings.mode === 'exam'){
-    return { funcs: cfg.funcs, timeLimit: cfg.examTime, totalQuestions: cfg.examQuestions, label: cfg.label, hardDistractors: cfg.hardDistractors, adaptive:false, modeLabel: 'สอบ · ' + cfg.label };
-  }
-  return { funcs: cfg.funcs, timeLimit: null, totalQuestions: null, label: cfg.label, hardDistractors: cfg.hardDistractors, adaptive:true, modeLabel: 'ฝึกฝน · ' + cfg.label };
 }
 
-// ================= Session state =================
-let session = null;
-function newSessionLog(){ const log = {}; ALL_FUNCS.forEach(f => log[f] = { attempts:0, correct:0, timeSum:0 }); return log; }
-
+// ================= Session lifecycle =================
 async function startSession(){
   await loadStats();
+  const cfg = resolveConfig();
+
+  const adaptive = settings.mode !== 'exam';
+
   session = {
-    runConfig: getRunConfig(),
-    qIndex: 0, current: null, score: 0, streak: 0,
-    answered: false, advanced: false, qStartTime: 0,
-    timerHandle: null, advanceTimeout: null,
-    log: newSessionLog(), timeline: [], reviewQueue: [],
+    cfg, adaptive,
+    questions: [], qIndex: 0, score: 0, streak: 0, answered: false, advanced: false,
+    qStartTime: 0, timerHandle: null, advanceTimeout: null,
+    log: newSessionLog(), reviewQueue: [], timeline: [],
   };
-  document.getElementById('modePill').textContent = 'โหมด: ' + session.runConfig.modeLabel;
+
+  if(!adaptive && cfg.questionCount){
+    for(let i=0;i<cfg.questionCount;i++){
+      const angle = ANGLES[Math.floor(Math.random()*ANGLES.length)];
+      const fn = cfg.funcs[Math.floor(Math.random()*cfg.funcs.length)];
+      session.questions.push({angle, fn});
+    }
+  } else {
+    session.questions.push(nextAdaptiveQuestion());
+  }
+
+  const modeLabel = settings.mode === 'exam' ? 'สอบ' : (settings.mode === 'custom' ? 'กำหนดเอง' : 'ฝึกฝน');
+  document.getElementById('modePill').textContent = 'โหมด: ' + modeLabel + ' · ' + cfg.label;
   showScreen('quizScreen');
-  nextQuestion();
+  loadQuestion();
 }
 
-function generateQuestion(rc){
+function nextAdaptiveQuestion(){
+  const cfg = session.cfg;
   session.reviewQueue.forEach(item => item.dueIn--);
+  const dueIdx = session.reviewQueue.findIndex(item => item.dueIn <= 0);
   let fn;
-  if(rc.adaptive){
-    const dueIdx = session.reviewQueue.findIndex(item => item.dueIn <= 0);
-    if(dueIdx !== -1){ fn = session.reviewQueue[dueIdx].fn; session.reviewQueue.splice(dueIdx,1); }
-    else { fn = weightedPickFunc(rc.funcs, statsCache.perFn); }
+  if(dueIdx !== -1){
+    fn = session.reviewQueue[dueIdx].fn;
+    session.reviewQueue.splice(dueIdx,1);
   } else {
-    fn = rc.funcs[Math.floor(Math.random()*rc.funcs.length)];
+    fn = weightedPickFunc(cfg.funcs, statsCache.perFn);
   }
   const angle = ANGLES[Math.floor(Math.random()*ANGLES.length)];
-  return { fn, angle };
+  return {angle, fn};
 }
 
-function nextQuestion(){
-  const rc = session.runConfig;
-  if(rc.totalQuestions !== null && session.qIndex >= rc.totalQuestions){ finishSession(false); return; }
-  session.current = generateQuestion(rc);
-  loadQuestionUI();
-}
-
-function loadQuestionUI(){
+function loadQuestion(){
   session.answered = false;
   session.advanced = false;
   clearTimers();
 
-  const rc = session.runConfig;
-  const q = session.current;
+  const cfg = session.cfg;
+  const q = session.questions[session.qIndex];
   const correct = TABLE[q.angle][q.fn];
 
-  document.getElementById('qCounter').textContent = rc.totalQuestions !== null
-    ? `ข้อ ${session.qIndex+1} / ${rc.totalQuestions}`
+  document.getElementById('qCounter').textContent = cfg.questionCount
+    ? `ข้อ ${session.qIndex+1} / ${cfg.questionCount}`
     : `ข้อที่ ${session.qIndex+1}`;
-  document.getElementById('qDiffTag').textContent = rc.modeLabel;
+  document.getElementById('qDiffTag').textContent = cfg.label;
   document.getElementById('qFn').textContent = FUNC_LABEL[q.fn];
-  document.getElementById('qAngle').textContent = q.angle + '°';
+  document.getElementById('qAngle').textContent = formatAngle(q.angle);
+  document.getElementById('qAngleAlt').textContent = '(' + altAngleLabel(q.angle) + ')';
   document.getElementById('scorePill').innerHTML = 'คะแนน: <b>' + session.score + '</b>';
   document.getElementById('streakPill').innerHTML = 'ต่อเนื่อง: <b>' + session.streak + '</b>';
 
-  renderCircle(q.angle);
+  const gridEl = document.querySelector('.grid');
+  const circlePanelEl = document.querySelector('.circle-panel');
+  if(displaySettings.showCircle){
+    circlePanelEl.style.display = '';
+    gridEl.classList.remove('no-circle');
+    renderCircle(q.angle);
+  } else {
+    circlePanelEl.style.display = 'none';
+    gridEl.classList.add('no-circle');
+  }
 
-  const distractors = buildDistractors(q.fn, q.angle, correct, rc.hardDistractors);
+  const distractors = buildDistractors(q.fn, q.angle, correct, cfg.hardDistractors);
   const options = shuffle([correct, ...distractors]);
   const grid = document.getElementById('optionsGrid');
   grid.innerHTML = '';
@@ -710,33 +804,42 @@ function loadQuestionUI(){
   document.getElementById('nextBtn').classList.remove('show');
 
   session.qStartTime = Date.now();
-  if(rc.timeLimit !== null){ startCountdown(rc.timeLimit); }
-  else { startStopwatch(); }
+  if(cfg.timeLimit){
+    startCountdown(cfg.timeLimit);
+  } else {
+    startStopwatch();
+  }
 }
 
-function startCountdown(limit){
+function startCountdown(limitMs){
   const fillEl = document.getElementById('timerFill');
   const labelEl = document.getElementById('timerLabel');
   fillEl.classList.remove('low');
   session.timerHandle = setInterval(() => {
     const elapsed = Date.now() - session.qStartTime;
-    const remaining = Math.max(0, limit - elapsed);
-    const pct = (remaining / limit) * 100;
+    const remaining = Math.max(0, limitMs - elapsed);
+    const pct = (remaining / limitMs) * 100;
     fillEl.style.width = pct + '%';
     labelEl.textContent = (remaining/1000).toFixed(1) + 's';
     if(pct < 25) fillEl.classList.add('low');
-    if(remaining <= 0){ clearInterval(session.timerHandle); timeUp(limit); }
+    if(remaining <= 0){
+      clearInterval(session.timerHandle);
+      timeUp(limitMs);
+    }
   }, 100);
 }
+
 function startStopwatch(){
   const fillEl = document.getElementById('timerFill');
   const labelEl = document.getElementById('timerLabel');
   fillEl.style.width = '100%';
   fillEl.classList.remove('low');
   session.timerHandle = setInterval(() => {
-    labelEl.textContent = fmtTime(Date.now() - session.qStartTime);
+    const elapsed = Date.now() - session.qStartTime;
+    labelEl.textContent = fmtTime(elapsed);
   }, 100);
 }
+
 function clearTimers(){
   if(session.timerHandle){ clearInterval(session.timerHandle); session.timerHandle = null; }
   if(session.advanceTimeout){ clearTimeout(session.advanceTimeout); session.advanceTimeout = null; }
@@ -747,16 +850,18 @@ function selectAnswer(chosen, correct, btnEl){
   session.answered = true;
   clearTimers();
   const elapsed = Date.now() - session.qStartTime;
-  finalizeAnswer(chosen === correct, elapsed, btnEl);
+  const isCorrect = chosen === correct;
+  finalizeAnswer(isCorrect, elapsed, btnEl);
 }
-function timeUp(limit){
+
+function timeUp(limitMs){
   if(session.answered) return;
   session.answered = true;
-  finalizeAnswer(false, limit, null);
+  finalizeAnswer(false, limitMs, null);
 }
 
 function finalizeAnswer(isCorrect, elapsed, btnEl){
-  const q = session.current;
+  const q = session.questions[session.qIndex];
   const correct = TABLE[q.angle][q.fn];
 
   if(isCorrect){ session.score++; session.streak++; } else { session.streak = 0; }
@@ -769,13 +874,13 @@ function finalizeAnswer(isCorrect, elapsed, btnEl){
 
   const slog = session.log[q.fn];
   slog.attempts++; if(isCorrect) slog.correct++; slog.timeSum += elapsed;
-  session.timeline.push({ index: session.qIndex+1, fn: q.fn, correct: isCorrect, elapsed });
+  session.timeline.push({ idx: session.qIndex, fn: q.fn, correct: isCorrect, timeMs: elapsed });
 
   const plog = statsCache.perFn[q.fn];
   plog.attempts++; if(isCorrect) plog.correct++; plog.timeSum += elapsed;
   saveStats();
 
-  if(session.runConfig.adaptive && !isCorrect){
+  if(session.adaptive && !isCorrect){
     session.reviewQueue.push({ fn: q.fn, dueIn: 3 });
   }
 
@@ -783,30 +888,95 @@ function finalizeAnswer(isCorrect, elapsed, btnEl){
   document.getElementById('streakPill').innerHTML = 'ต่อเนื่อง: <b>' + session.streak + '</b>';
   document.getElementById('nextBtn').classList.add('show');
 
-  // click an answer -> auto-advance to next question shortly after
-  session.advanceTimeout = setTimeout(() => { if(!session.advanced) advance(); }, 850);
+  session.advanceTimeout = setTimeout(() => { if(!session.advanced) advance(); }, isCorrect ? 700 : 1300);
 }
 
 function advance(){
   if(session.advanced) return;
   session.advanced = true;
   clearTimers();
+  const cfg = session.cfg;
   session.qIndex++;
-  nextQuestion();
+
+  if(cfg.questionCount && session.qIndex >= cfg.questionCount){
+    finishSession(false);
+    return;
+  }
+  if(session.adaptive){
+    session.questions.push(nextAdaptiveQuestion());
+  }
+  loadQuestion();
 }
 
-document.getElementById('nextBtn').addEventListener('click', () => { if(session && session.answered) advance(); });
+document.getElementById('nextBtn').addEventListener('click', () => { if(session.answered) advance(); });
+
 document.addEventListener('keydown', (e) => {
-  if(!document.getElementById('quizScreen').classList.contains('active') || !session) return;
+  const quizActive = document.getElementById('quizScreen').classList.contains('active');
+  if(!quizActive || !session) return;
   if(['1','2','3','4'].includes(e.key)){
     if(session.answered) return;
-    const opts = document.querySelectorAll('.opt');
     const idx = parseInt(e.key,10) - 1;
+    const opts = document.querySelectorAll('.opt');
     if(opts[idx]) opts[idx].click();
   } else if(e.key === 'Enter' && session.answered){
     advance();
   }
 });
+
+// ================= Charts (SVG) =================
+function donutChartSVG(pct){
+  const r=50, cx=60, cy=60, sw=14;
+  const circumference = 2*Math.PI*r;
+  const dash = (pct/100)*circumference;
+  const color = pct>=70?'#5FBF8B':(pct>=40?'#D9AC4F':'#E2685A');
+  return `<svg viewBox="0 0 120 120" width="140" height="140">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#38416b" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-dasharray="${dash} ${circumference}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
+    <text x="${cx}" y="${cy+7}" text-anchor="middle" fill="#F2EEE2" font-size="22" font-family="Fraunces, serif" font-weight="700">${pct}%</text>
+  </svg>`;
+}
+function barChartSVG(rows){
+  if(!rows.length) return '<p style="color:var(--chalk-dim); font-family:\'IBM Plex Mono\',monospace; font-size:13px;">ยังไม่มีข้อมูล</p>';
+  const barH=26, gap=12, leftPad=56, rightPad=46;
+  const width=460;
+  const height = rows.length*(barH+gap)+gap;
+  const maxW = width-leftPad-rightPad;
+  let bars = rows.map((r,i)=>{
+    const y = gap + i*(barH+gap);
+    const w = Math.max(4, r.acc*maxW);
+    const color = r.acc>=0.7?'#5FBF8B':(r.acc>=0.4?'#D9AC4F':'#E2685A');
+    return `<text x="0" y="${y+barH/2+4}" fill="#A9AFCB" font-size="13">${FUNC_LABEL[r.f]}</text>
+      <rect x="${leftPad}" y="${y}" width="${maxW}" height="${barH}" rx="6" fill="#38416b" opacity="0.35"/>
+      <rect x="${leftPad}" y="${y}" width="${w}" height="${barH}" rx="6" fill="${color}"/>
+      <text x="${leftPad+maxW+8}" y="${y+barH/2+4}" fill="#F2EEE2" font-size="13">${Math.round(r.acc*100)}%</text>`;
+  }).join('');
+  return `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">${bars}</svg>`;
+}
+function timelineChartSVG(timeline){
+  if(!timeline.length) return '<p style="color:var(--chalk-dim); font-family:\'IBM Plex Mono\',monospace; font-size:13px;">ยังไม่มีข้อมูล</p>';
+  const width=640, height=170, padL=40, padB=26, padT=14, padR=14;
+  const innerW = width-padL-padR, innerH = height-padT-padB;
+  const maxTime = Math.max(...timeline.map(t=>t.timeMs), 1000);
+  const n = timeline.length;
+  const pts = timeline.map((t,i)=>{
+    const x = padL + (n===1?innerW/2:(i/(n-1))*innerW);
+    const y = padT + innerH - (t.timeMs/maxTime)*innerH;
+    return {x,y,correct:t.correct};
+  });
+  const pathD = pts.map((p,i)=> (i===0?'M':'L')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' ');
+  const dots = pts.map(p=>`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${p.correct?'#5FBF8B':'#E2685A'}"/>`).join('');
+  const avgTime = timeline.reduce((a,t)=>a+t.timeMs,0)/n;
+  const avgY = padT+innerH-(avgTime/maxTime)*innerH;
+  return `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">
+    <line x1="${padL}" y1="${avgY.toFixed(1)}" x2="${width-padR}" y2="${avgY.toFixed(1)}" stroke="#A9AFCB" stroke-dasharray="4 4" stroke-width="1"/>
+    <text x="${width-padR}" y="${(avgY-6).toFixed(1)}" text-anchor="end" fill="#A9AFCB" font-size="11">เฉลี่ย ${(avgTime/1000).toFixed(1)}s</text>
+    <path d="${pathD}" fill="none" stroke="#6FA6FF" stroke-width="2"/>
+    ${dots}
+    <line x1="${padL}" y1="${padT+innerH}" x2="${width-padR}" y2="${padT+innerH}" stroke="#38416b" stroke-width="1"/>
+    <text x="${padL}" y="${height-4}" fill="#A9AFCB" font-size="10">ข้อแรก</text>
+    <text x="${width-padR}" y="${height-4}" text-anchor="end" fill="#A9AFCB" font-size="10">ข้อล่าสุด</text>
+  </svg>`;
+}
 
 // ================= Results screen =================
 function finishSession(manualEnd){
@@ -817,7 +987,7 @@ function finishSession(manualEnd){
   const avgTime = totalAnswered ? totalTime/totalAnswered : 0;
   const acc = totalAnswered ? Math.round((totalCorrect/totalAnswered)*100) : 0;
 
-  document.getElementById('resultsTag').textContent = 'สรุปผล · ' + session.runConfig.modeLabel;
+  document.getElementById('resultsTag').textContent = settings.mode === 'exam' ? 'สรุปผลการสอบ' : 'สรุปเซสชัน';
   document.getElementById('finalScore').textContent = `${totalCorrect} / ${totalAnswered}`;
 
   let msg = '';
@@ -832,18 +1002,15 @@ function finishSession(manualEnd){
   document.getElementById('avgTimeVal').textContent = fmtSec(avgTime);
   document.getElementById('accVal').textContent = acc + '%';
 
-  const rows = ALL_FUNCS.map(f => ({ f, ...session.log[f] }))
+  const rows = ALL_FUNCS
+    .map(f => ({ f, ...session.log[f] }))
     .filter(r => r.attempts > 0)
     .map(r => ({ ...r, acc: r.correct/r.attempts, avg: r.timeSum/r.attempts }));
   rows.sort((a,b) => a.acc - b.acc || b.avg - a.avg);
 
-  const tbody = document.querySelector('#resultsTable tbody');
-  tbody.innerHTML = '';
-  rows.forEach(r => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${FUNC_LABEL[r.f]}</td><td>${r.attempts} / ${r.correct}</td><td>${Math.round(r.acc*100)}%</td><td>${fmtSec(r.avg)}</td>`;
-    tbody.appendChild(tr);
-  });
+  document.getElementById('resultsDonut').innerHTML = donutChartSVG(acc);
+  document.getElementById('resultsBars').innerHTML = barChartSVG(rows);
+  document.getElementById('resultsTimeline').innerHTML = timelineChartSVG(session.timeline);
 
   const calloutRow = document.getElementById('calloutRow');
   calloutRow.innerHTML = '';
@@ -852,108 +1019,61 @@ function finishSession(manualEnd){
     const goodFn = bestSorted[0];
     const worstFn = rows[0];
     calloutRow.innerHTML = `
-      <div class="callout good"><div class="lab">แม่นและเร็วที่สุด</div><div class="fn-name">${FUNC_LABEL[goodFn.f]}</div>
-        <div class="detail">ถูก ${Math.round(goodFn.acc*100)}% · เฉลี่ย ${fmtSec(goodFn.avg)} ต่อข้อ</div></div>
-      <div class="callout bad"><div class="lab">ควรฝึกเพิ่ม</div><div class="fn-name">${FUNC_LABEL[worstFn.f]}</div>
-        <div class="detail">ถูก ${Math.round(worstFn.acc*100)}% · เฉลี่ย ${fmtSec(worstFn.avg)} ต่อข้อ</div></div>`;
+      <div class="callout good">
+        <div class="lab">แม่นและเร็วที่สุด</div>
+        <div class="fn-name">${FUNC_LABEL[goodFn.f]}</div>
+        <div class="detail">ถูก ${Math.round(goodFn.acc*100)}% · เฉลี่ย ${fmtSec(goodFn.avg)} ต่อข้อ</div>
+      </div>
+      <div class="callout bad">
+        <div class="lab">ควรฝึกเพิ่ม</div>
+        <div class="fn-name">${FUNC_LABEL[worstFn.f]}</div>
+        <div class="detail">ถูก ${Math.round(worstFn.acc*100)}% · เฉลี่ย ${fmtSec(worstFn.avg)} ต่อข้อ</div>
+      </div>`;
   }
 
-  document.getElementById('accChartWrap').innerHTML = rows.length ? buildAccuracyChartSVG(rows) : '<div class="hint">ยังไม่มีข้อมูลพอสำหรับกราฟ</div>';
-  document.getElementById('timeChartWrap').innerHTML = session.timeline.length ? buildTimeChartSVG(session.timeline) : '<div class="hint">ยังไม่มีข้อมูลพอสำหรับกราฟ</div>';
-
-  if(totalAnswered > 0){
-    statsCache.sessionHistory.unshift({ date: Date.now(), modeLabel: session.runConfig.modeLabel, score: totalCorrect, total: totalAnswered, avgTime });
-    statsCache.sessionHistory = statsCache.sessionHistory.slice(0, 12);
+  if(settings.mode === 'exam' && !manualEnd){
+    statsCache.examHistory.unshift({
+      date: Date.now(), difficulty: settings.difficulty,
+      score: totalCorrect, total: totalAnswered, avgTime,
+    });
+    statsCache.examHistory = statsCache.examHistory.slice(0, 10);
     saveStats();
   }
 
   showScreen('resultsScreen');
 }
 
-// ================= SVG chart builders =================
-function buildAccuracyChartSVG(rows){
-  const sorted = [...rows].sort((a,b) => b.acc - a.acc);
-  const rowH = 42, top = 6, w = 620, barX = 90, barW = 460;
-  const h = sorted.length*rowH + top*2;
-  let bars = '';
-  sorted.forEach((r,i) => {
-    const y = top + i*rowH;
-    const pct = r.acc*100;
-    const color = r.acc>=0.7 ? '#5FBF8B' : (r.acc>=0.4 ? '#D9AC4F' : '#E2685A');
-    bars += `
-      <text x="0" y="${y+19}" fill="#F2EEE2" font-size="14">${FUNC_LABEL[r.f]}</text>
-      <rect x="${barX}" y="${y+6}" width="${barW}" height="18" rx="9" fill="#38416b" opacity="0.5"/>
-      <rect x="${barX}" y="${y+6}" width="${barW*r.acc}" height="18" rx="9" fill="${color}"/>
-      <text x="${barX+barW+12}" y="${y+19}" fill="#A9AFCB" font-size="12">${Math.round(pct)}%</text>`;
-  });
-  return `<svg class="chart-svg" viewBox="0 0 ${w} ${h}">${bars}</svg>`;
-}
-
-function buildTimeChartSVG(timeline){
-  const w = 640, h = 240, padL = 44, padR = 16, padT = 16, padB = 30;
-  const innerW = w - padL - padR, innerH = h - padT - padB;
-  const maxT = Math.max(...timeline.map(p => p.elapsed)) * 1.15 || 1000;
-  const n = timeline.length;
-  const xFor = (i) => padL + (n === 1 ? innerW/2 : (i/(n-1))*innerW);
-  const yFor = (ms) => padT + innerH - (ms/maxT)*innerH;
-
-  const avg = timeline.reduce((a,p)=>a+p.elapsed,0)/n;
-  const avgY = yFor(avg);
-
-  let path = timeline.map((p,i) => `${i===0?'M':'L'} ${xFor(i).toFixed(1)} ${yFor(p.elapsed).toFixed(1)}`).join(' ');
-  let dots = timeline.map((p,i) => `<circle cx="${xFor(i).toFixed(1)}" cy="${yFor(p.elapsed).toFixed(1)}" r="4" fill="${p.correct?'#5FBF8B':'#E2685A'}"/>`).join('');
-
-  const yTicks = [0, maxT/2, maxT];
-  let yLabels = yTicks.map(t => `<text x="${padL-8}" y="${yFor(t).toFixed(1)+4}" fill="#A9AFCB" font-size="10" text-anchor="end">${(t/1000).toFixed(1)}s</text>
-    <line x1="${padL}" y1="${yFor(t).toFixed(1)}" x2="${w-padR}" y2="${yFor(t).toFixed(1)}" stroke="#38416b" stroke-width="1" opacity="0.4"/>`).join('');
-
-  const xLabelStep = Math.max(1, Math.round(n/8));
-  let xLabels = '';
-  timeline.forEach((p,i) => { if(i % xLabelStep === 0 || i === n-1){ xLabels += `<text x="${xFor(i).toFixed(1)}" y="${h-8}" fill="#A9AFCB" font-size="10" text-anchor="middle">${p.index}</text>`; } });
-
-  return `<svg class="chart-svg" viewBox="0 0 ${w} ${h}">
-    ${yLabels}
-    <line x1="${padL}" y1="${avgY.toFixed(1)}" x2="${w-padR}" y2="${avgY.toFixed(1)}" stroke="#D9AC4F" stroke-width="1.5" stroke-dasharray="4,4"/>
-    <text x="${w-padR}" y="${(avgY-6).toFixed(1)}" fill="#D9AC4F" font-size="10" text-anchor="end">เฉลี่ย ${(avg/1000).toFixed(1)}s</text>
-    <path d="${path}" fill="none" stroke="#6FA6FF" stroke-width="1.5" opacity="0.7"/>
-    ${dots}
-    ${xLabels}
-  </svg>`;
-}
-
 // ================= Dashboard =================
-async function openDashboard(){ await loadStats(); renderDashboard(); showScreen('dashboardScreen'); }
+async function openDashboard(){
+  await loadStats();
+  renderDashboard();
+  showScreen('dashboardScreen');
+}
 
 function renderDashboard(){
   const rows = ALL_FUNCS.map(f => {
     const s = statsCache.perFn[f];
-    return { f, attempts: s.attempts, correct: s.correct, acc: s.attempts ? s.correct/s.attempts : null, avg: s.attempts ? s.timeSum/s.attempts : null };
+    return { f, attempts: s.attempts, correct: s.correct,
+      acc: s.attempts ? s.correct/s.attempts : 0,
+      avg: s.attempts ? s.timeSum/s.attempts : 0 };
   });
-  const attempted = rows.filter(r => r.attempts > 0).sort((a,b) => a.acc - b.acc || (b.avg-a.avg));
+  const withData = rows.filter(r => r.attempts > 0).sort((a,b) => a.acc - b.acc || b.avg - a.avg);
 
-  document.getElementById('dashChartWrap').innerHTML = attempted.length ? buildAccuracyChartSVG(attempted) : '<div class="hint">ยังไม่มีข้อมูล ลองทำแบบทดสอบสักรอบก่อนนะ</div>';
+  const totalAttempts = rows.reduce((a,r)=>a+r.attempts,0);
+  const totalCorrect = rows.reduce((a,r)=>a+r.correct,0);
+  const overallAcc = totalAttempts ? Math.round((totalCorrect/totalAttempts)*100) : 0;
 
-  const sortedAll = [...rows].sort((a,b) => { if(a.acc===null) return 1; if(b.acc===null) return -1; return a.acc-b.acc || (b.avg-a.avg); });
-  const tbody = document.querySelector('#dashTable tbody');
-  tbody.innerHTML = '';
-  sortedAll.forEach(r => {
-    const tr = document.createElement('tr');
-    if(r.attempts === 0){
-      tr.innerHTML = `<td>${FUNC_LABEL[r.f]}</td><td colspan="3" style="color:var(--chalk-dim)">ยังไม่มีข้อมูล</td>`;
-    } else {
-      tr.innerHTML = `<td>${FUNC_LABEL[r.f]}</td><td>${r.attempts} / ${r.correct}</td><td>${Math.round(r.acc*100)}%</td><td>${fmtSec(r.avg)}</td>`;
-    }
-    tbody.appendChild(tr);
-  });
+  document.getElementById('dashDonut').innerHTML = donutChartSVG(overallAcc);
+  document.getElementById('dashBars').innerHTML = barChartSVG(withData);
 
   const histEl = document.getElementById('historyList');
-  if(!statsCache.sessionHistory.length){
-    histEl.innerHTML = '<div class="hrow"><span>ยังไม่มีข้อมูล</span></div>';
+  if(!statsCache.examHistory.length){
+    histEl.innerHTML = '<div class="hrow"><span>ยังไม่มีข้อมูลการสอบ</span></div>';
   } else {
-    histEl.innerHTML = statsCache.sessionHistory.map(h => {
+    histEl.innerHTML = statsCache.examHistory.map(h => {
       const d = new Date(h.date);
       const dateStr = d.toLocaleDateString('th-TH', {day:'2-digit', month:'2-digit', year:'2-digit'}) + ' ' + d.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-      return `<div class="hrow"><span>${dateStr} · ${h.modeLabel}</span><span>${h.score}/${h.total} · เฉลี่ย ${fmtSec(h.avgTime)}</span></div>`;
+      return `<div class="hrow"><span>${dateStr} · ${DIFF_CONFIG[h.difficulty].label}</span><span>${h.score}/${h.total} · เฉลี่ย ${fmtSec(h.avgTime)}</span></div>`;
     }).join('');
   }
 }
@@ -964,6 +1084,7 @@ function renderCircle(angleDeg){
   const rad = angleDeg * Math.PI/180;
   const px = cx + r*Math.cos(rad);
   const py = cy - r*Math.sin(rad);
+
   document.getElementById('radiusLine').setAttribute('x2', px);
   document.getElementById('radiusLine').setAttribute('y2', py);
   document.getElementById('pointDot').setAttribute('cx', px);
@@ -976,13 +1097,14 @@ function renderCircle(angleDeg){
   document.getElementById('sinLine').setAttribute('y1', cy);
   document.getElementById('sinLine').setAttribute('x2', px);
   document.getElementById('sinLine').setAttribute('y2', py);
+
   const arcR = 34;
   const startX = cx + arcR, startY = cy;
   const endX = cx + arcR*Math.cos(rad), endY = cy - arcR*Math.sin(rad);
   const largeArc = angleDeg > 180 ? 1 : 0;
   let d = (angleDeg % 360 === 0) ? '' : `M ${startX} ${startY} A ${arcR} ${arcR} 0 ${largeArc} 0 ${endX} ${endY}`;
   document.getElementById('arcPath').setAttribute('d', d);
-  document.getElementById('angleReadout').textContent = angleDeg + '°';
+  document.getElementById('angleReadout').textContent = formatAngle(angleDeg);
 }
 
 // ================= Init =================
